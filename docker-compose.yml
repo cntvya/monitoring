@@ -1,0 +1,23 @@
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest-ubuntu
+    ports:
+      - "3000:3000"
+    restart: always
+
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+    restart: always
+
+  prometheus:
+    container_name: prometheus
+    image: bitnami/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    restart: always
